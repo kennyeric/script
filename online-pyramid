@@ -1,6 +1,7 @@
 /tmp/log20120914.log{
         rotate 14
 	missingok
+        dateext
         size 50M
 	create 640 xc adm
         daily
