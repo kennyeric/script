@@ -1,0 +1,9 @@
+/tmp/log20120914.log{
+        rotate 14
+	missingok
+        size 50M
+	create 640 xc adm
+        daily
+        compress
+        sharedscripts
+}
