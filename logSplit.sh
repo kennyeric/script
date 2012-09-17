@@ -11,10 +11,19 @@ else
     echo "The kill command executes failed"
 fi
 
-logfile=`date +"%Y-%m-%d.log"`
-logdir="/home/xc/env/python/"
+#`cd $HOME/env/python/`
+if [ "$?" == "0" ]
+then
+    echo "app path does exist"
+else
+    exit 1
+fi
 
-STARTUP_COMMAND="uwsgi -s :9989 --ini-paste production.ini -d $logdir$logfile"
+logfile=`date +"%Y-%m-%d-%H-%M.log"`
+homedir="$HOME/env/python/"
+appConfig="production.ini"
+
+STARTUP_COMMAND="uwsgi -s :9989 --ini-paste $appConfig -d $logfile"
 
 echo "The start command is ..."
 echo "$STARTUP_COMMAND"
@@ -23,8 +32,8 @@ ${STARTUP_COMMAND}
 
 if [ "$?" == "0" ]
 then
-    echo "The startup command executes successfully" >> $logdir$logfile
+    echo "The startup command executes successfully"
 else
-    echo "The startup ommand executes failed" >> $logdir$logfile
+    echo "The startup ommand executes failed"
     exit 1
 fi
